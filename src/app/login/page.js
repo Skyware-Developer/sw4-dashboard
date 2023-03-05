@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
   // Your web app's Firebase configuration
@@ -15,6 +16,7 @@ export default function Login() {
     messagingSenderId: "544450645227",
     appId: "1:544450645227:web:413a284578d5ef0ac682ae",
   };
+  const router = useRouter();
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const [email, setEmail] = useState("");
@@ -26,6 +28,7 @@ export default function Login() {
     const user = userCredential.user;
     alert('Login exitoso');
     console.log(user);
+    router.push('/dashboard');
     // ...
   })
   .catch((error) => {
